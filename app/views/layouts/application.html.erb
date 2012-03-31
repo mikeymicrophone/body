@@ -7,8 +7,21 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
-    <%= login_links %>
-    <%= yield %>
+    <div id="title_banner">
+      BODY ACTUALIZED center
+    </div>
+    
+    <nav>
+      <%= link_to "Events", events_path %>
+      <%= link_to "Members", vibers_path %>
+      <%= login_links %>
+    </nav>
+    
+    <div id="content">
+    
+      <%= yield %>
+      
+    </div>
 
   </body>
 </html>

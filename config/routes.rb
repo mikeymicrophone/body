@@ -3,6 +3,8 @@ Body::Application.routes.draw do
 
   devise_for :vibers
   
+  resources :vibers
+  
   root :to => 'events#index'
 
   # The priority is based upon order of creation:

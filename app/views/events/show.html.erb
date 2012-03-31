@@ -1,45 +1,21 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Name:</b>
-  <%= @event.name %>
+  <b><%= @event.name %></b>
 </p>
 
 <p>
-  <b>Subtitle:</b>
   <%= @event.subtitle %>
 </p>
 
-<p>
-  <b>Description:</b>
+<i>
   <%= @event.description %>
+</i>
+
+<p>
+  <%= @event.start_time.strftime("%A, %B *%d from *%I o'clock %p").gsub('*0', '').gsub('*', '') %> until <%= @event.end_time.strftime("*%I o'clock %p on %A, %B *%d").gsub('*0', '').gsub('*', '') %>
 </p>
 
 <p>
-  <b>Start time:</b>
-  <%= @event.start_time %>
+  <%= image_tag @event.flyer_image.url %>
 </p>
-
-<p>
-  <b>End time:</b>
-  <%= @event.end_time %>
-</p>
-
-<p>
-  <b>Public:</b>
-  <%= @event.public %>
-</p>
-
-<p>
-  <b>Flyer image:</b>
-  <%= @event.flyer_image %>
-</p>
-
-<p>
-  <b>Viber:</b>
-  <%= @event.viber_id %>
-</p>
-
-
-<%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>

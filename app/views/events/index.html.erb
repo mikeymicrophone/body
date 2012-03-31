@@ -1,37 +1,15 @@
-<h1>Listing events</h1>
-
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Subtitle</th>
-    <th>Description</th>
-    <th>Start time</th>
-    <th>End time</th>
-    <th>Public</th>
-    <th>Flyer image</th>
-    <th>Viber</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
 
 <% @events.each do |event| %>
-  <tr>
-    <td><%= event.name %></td>
-    <td><%= event.subtitle %></td>
-    <td><%= event.description %></td>
-    <td><%= event.start_time %></td>
-    <td><%= event.end_time %></td>
-    <td><%= event.public %></td>
-    <td><%= event.flyer_image %></td>
-    <td><%= event.viber_id %></td>
-    <td><%= link_to 'Show', event %></td>
-    <td><%= link_to 'Edit', edit_event_path(event) %></td>
-    <td><%= link_to 'Destroy', event, confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
+  <%= div_for event do %>
+    <div class='flyer'>
+      <%= image_tag(event.flyer_image.url, :width => 100) if event.flyer_image.present? %>
+    </div>
+    <b><%= link_to event.name, event %></b>:
+    <%= event.subtitle %>
+    <div class="schedule">
+      <%= event.start_time.strftime("%a, *%m/*%d *%I:%M").gsub('*0', '').gsub('*', '') %> - <%= event.end_time.strftime("*%I:%M").gsub('*0', '').gsub('*', '') %>
+    </div>
+  <% end %>
 <% end %>
-</table>
-
-<br />
 
 <%= link_to 'New Event', new_event_path %>

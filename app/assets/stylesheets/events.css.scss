@@ -1,3 +1,13 @@
-// Place all the styles related to the events controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.event {
+	border: 1px solid #99094C;
+	margin: 2px;
+	
+	.flyer {
+		display: inline-block;
+		width: 180px;
+	}
+	
+	.schedule {
+		float: right;
+	}
+}
