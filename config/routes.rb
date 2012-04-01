@@ -1,7 +1,9 @@
 Body::Application.routes.draw do
   resources :rsvps
 
-  resources :events
+  resources :events do
+    resources :rsvps
+  end
 
   devise_for :vibers
   

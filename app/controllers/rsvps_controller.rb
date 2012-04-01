@@ -2,7 +2,12 @@ class RsvpsController < ApplicationController
   # GET /rsvps
   # GET /rsvps.json
   def index
-    @rsvps = Rsvp.all
+    @rsvps = if params[:event_id]
+      @event = Event.find params[:event_id]
+      @event.rsvps
+    else
+      Rsvp.all
+    end
 
     respond_to do |format|
       format.html # index.html.erb
