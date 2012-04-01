@@ -17,5 +17,5 @@
 </p>
 
 <p>
-  <%= image_tag @event.flyer_image.url %>
+  <%= image_tag @event.flyer_image.url if @event.flyer_image.present? %>
 </p>

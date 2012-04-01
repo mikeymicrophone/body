@@ -2,7 +2,7 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @events = Event.all
+    @events = Event.visible
 
     respond_to do |format|
       format.html # index.html.erb
@@ -41,6 +41,7 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
     @event = Event.new(params[:event])
+    @event.viber = current_viber
 
     respond_to do |format|
       if @event.save
