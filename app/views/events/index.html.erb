@@ -6,6 +6,23 @@
     </div>
     <b><%= link_to event.name, event %></b>:
     <%= event.subtitle %>
+    <% if someone_is_logged_in %>
+      <% if current_viber.rsvp_for_event(event) %>
+        <%= current_viber.rsvp_for_event(event).sincerity %>
+      <% else %>
+        <%= link_to 'RSVP', '#' + dom_id(event, :rsvp), :class => 'fancybox', :id => dom_id(event, :rsvp_to) %>
+        <div class='hidden'>
+          <%= content_tag :div, :id => dom_id(event, :rsvp) do %>
+            <%= form_for event.rsvps.new, :remote => true, :html => {:id => dom_id(event, :rsvp_form_for)} do |f| %>
+              <%= f.label :sincerity, 'How excited are you about going?' %>
+              <%= f.text_field :sincerity, :size => 4, :placeholder => '1-500' %>
+              <%= f.submit :RSVP %>
+              <%= f.hidden_field :event_id %>
+            <% end %>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
     <div class="schedule">
       <%= event.start_time.strftime("%a, *%m/*%d *%I:%M").gsub('*0', '').gsub('*', '') %> - <%= event.end_time.strftime("*%I:%M").gsub('*0', '').gsub('*', '') %>
     </div>

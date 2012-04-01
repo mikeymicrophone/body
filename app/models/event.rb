@@ -1,5 +1,7 @@
 class Event < ActiveRecord::Base
   belongs_to :viber
+  has_many :rsvps
+  has_many :rsvpd_vibers, :through => :rsvps, :source => :viber
   
   attr_accessible :description, :end_time, :flyer_image, :name, :public, :start_time, :subtitle, :viber_id
   

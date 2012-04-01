@@ -12,4 +12,5 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require 'jquery.fancybox.js.coffee'
 //= require_tree .

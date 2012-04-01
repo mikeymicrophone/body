@@ -7,4 +7,8 @@ module ApplicationHelper
       link_to('sign up', new_viber_registration_path)
     end
   end
+  
+  def someone_is_logged_in
+    current_viber
+  end
 end

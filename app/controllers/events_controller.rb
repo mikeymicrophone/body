@@ -45,7 +45,7 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
-        format.html { redirect_to @event, notice: 'Event was successfully created.' }
+        format.html { redirect_to @event, notice: "#{@event.name} is saved and scheduled." }
         format.json { render json: @event, status: :created, location: @event }
       else
         format.html { render action: "new" }
