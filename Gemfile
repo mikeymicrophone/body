@@ -21,6 +21,7 @@ group :development, :test do
   gem 'mysql2'
   gem 'rspec-rails'
   gem 'ruby-debug19', :require => 'ruby-debug'
+  gem 'rr'
 end
 
 # To use Jbuilder templates for JSON

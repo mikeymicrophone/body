@@ -1,0 +1,25 @@
+<%= form_for(@ticket) do |f| %>
+  <% if @ticket.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@ticket.errors.count, "error") %> prohibited this ticket from being saved:</h2>
+
+      <ul>
+      <% @ticket.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :tier_id %><br />
+    <%= f.select :tier_id, options_from_collection_for_select(@tiers, :id, :priced_name) %>
+  </div>
+  <div class="field">
+    <%= label :order, :quantity %><br />
+    <%= number_field_tag :quantity, {}, :value => 1 %>
+  </div>  
+  <div class="actions">
+    <%= f.submit 'Book tickets' %>
+  </div>
+<% end %>

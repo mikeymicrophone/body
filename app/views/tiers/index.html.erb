@@ -1,0 +1,36 @@
+<h1>Listing tiers</h1>
+
+<table>
+  <tr>
+    <th>Event</th>
+    <th>Name</th>
+    <th>Price</th>
+    <th>Quantity</th>
+    <th>Remaining quantity</th>
+    <th>Deadline</th>
+    <th>Contact person</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @tiers.each do |tier| %>
+  <tr>
+    <td><%= link_to tier.event.name, tier.event %></td>
+    <td><%= link_to tier.name, tier %></td>
+    <td><%= tier.price %></td>
+    <td><%= tier.quantity %></td>
+    <td><%= tier.remaining_quantity %></td>
+    <td><%= tier.deadline %></td>
+    <td><%= tier.contact_person.email %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<% if params[:event_id] %>
+  <%= link_to 'New Tier', new_event_tier_path %>
+<% else %>
+  <%= link_to 'New Tier', new_tier_path %>
+<% end %>

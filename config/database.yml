@@ -5,3 +5,10 @@ development:
   host: localhost
   encoding: utf8
   
+test:
+  database: body_test
+  adapter: mysql2
+  username: root
+  host: localhost
+  encoding: utf8
+  

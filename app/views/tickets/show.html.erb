@@ -1,0 +1,10 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Tier:</b>
+  <%= @ticket.tier.name %>
+</p>
+<p>
+  <b>Event:</b>
+  <%= link_to @ticket.event.name, @ticket.event %>
+</p>

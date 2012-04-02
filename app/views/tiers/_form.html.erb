@@ -1,0 +1,46 @@
+<%= form_for(@tier, params[:event_id].present? ? {:url => event_tiers_path} : {}) do |f| %>
+  <% if @tier.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@tier.errors.count, "error") %> prohibited this tier from being saved:</h2>
+
+      <ul>
+      <% @tier.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <% if @tier.event %>
+    <%= f.hidden_field :event_id%>
+  <% else %>
+    <div class="field">
+      <%= f.label :event_id %><br />
+      <%= f.select :event_id, options_from_collection_for_select(Event.upcoming, :id, :name) %>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :price %><br />
+    <%= f.number_field :price %>
+  </div>
+  <div class="field">
+    <%= f.label :quantity %><br />
+    <%= f.number_field :quantity %>
+  </div>
+  <div class="field">
+    <%= f.label :deadline %><br />
+    <%= f.datetime_select :deadline %>
+  </div>
+  <div class="field">
+    <%= f.label :contact_person_id %><br />
+    <%= f.select :contact_person_id, options_from_collection_for_select(Viber.alpha_email, :id, :email) %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

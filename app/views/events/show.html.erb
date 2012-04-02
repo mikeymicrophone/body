@@ -8,6 +8,12 @@
   <%= @event.subtitle %>
 </p>
 
+<p>
+  <% if @event.has_tickets_available? %>
+    <%= link_to 'Get tickets', new_event_ticket_path(@event) %>
+  <% end %>
+</p>
+
 <i>
   <%= @event.description %>
 </i>
@@ -19,3 +25,5 @@
 <p>
   <%= image_tag @event.flyer_image.url if @event.flyer_image.present? %>
 </p>
+
+<%= link_to 'ticket tiers', event_tiers_path(@event) %>

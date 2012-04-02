@@ -3,6 +3,9 @@ class Viber < ActiveRecord::Base
   has_many :rsvps
   has_many :rsvpd_events, :through => :rsvps, :source => :event
   
+  has_many :transactions
+  has_many :tickets
+  
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -11,7 +14,13 @@ class Viber < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :username
   
+  scope :alpha_email, :order => :email
+  
   def rsvp_for_event event
     rsvps.for_event(event).first
+  end
+  
+  def has_tickets_to_event? event
+    tickets.for_event(event).present?
   end
 end

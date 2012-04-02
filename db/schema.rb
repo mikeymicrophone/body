@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120401000347) do
+ActiveRecord::Schema.define(:version => 20120402165005) do
 
   create_table "events", :force => true do |t|
     t.string   "name"
@@ -33,6 +33,38 @@ ActiveRecord::Schema.define(:version => 20120401000347) do
     t.text     "note"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "tickets", :force => true do |t|
+    t.integer  "tier_id"
+    t.integer  "viber_id"
+    t.integer  "transaction_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  create_table "tiers", :force => true do |t|
+    t.integer  "event_id"
+    t.string   "name"
+    t.integer  "price"
+    t.integer  "quantity"
+    t.integer  "remaining_quantity"
+    t.datetime "deadline"
+    t.integer  "contact_person_id"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
+  create_table "transactions", :force => true do |t|
+    t.integer  "viber_id"
+    t.string   "transaction_record_id"
+    t.integer  "points_in"
+    t.integer  "points_out"
+    t.text     "note"
+    t.string   "item_type"
+    t.integer  "item_id"
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
   end
 
   create_table "vibers", :force => true do |t|

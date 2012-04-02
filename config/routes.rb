@@ -1,8 +1,18 @@
 Body::Application.routes.draw do
+  resources :transactions
+
+  resources :tickets
+
+  resources :tiers do
+    resources :tickets
+  end
+
   resources :rsvps
 
   resources :events do
     resources :rsvps
+    resources :tiers
+    resources :tickets
   end
 
   devise_for :vibers
