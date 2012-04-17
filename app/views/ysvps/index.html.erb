@@ -1,0 +1,29 @@
+<h1>Listing ysvps</h1>
+
+<table>
+  <tr>
+    <th>Yoga</th>
+    <th>Viber</th>
+    <th>Sincerity</th>
+    <th>Note</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @ysvps.each do |ysvp| %>
+  <tr>
+    <td><%= ysvp.yoga_id %></td>
+    <td><%= ysvp.viber_id %></td>
+    <td><%= ysvp.sincerity %></td>
+    <td><%= ysvp.note %></td>
+    <td><%= link_to 'Show', ysvp %></td>
+    <td><%= link_to 'Edit', edit_ysvp_path(ysvp) %></td>
+    <td><%= link_to 'Destroy', ysvp, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Ysvp', new_ysvp_path %>

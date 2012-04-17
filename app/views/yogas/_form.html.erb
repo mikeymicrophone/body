@@ -1,0 +1,41 @@
+<%= form_for(@yoga) do |f| %>
+  <% if @yoga.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@yoga.errors.count, "error") %> prohibited this yoga from being saved:</h2>
+
+      <ul>
+      <% @yoga.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :time %><br />
+    <%= f.datetime_select :time %>
+  </div>
+  <div class="field">
+    <%= f.label :instructor_id %><br />
+    <%= f.select :instructor_id, options_from_collection_for_select(Viber.all, :id, :email, @yoga.instructor_id) %>
+  </div>
+  <div class="field">
+    <%= f.label :end_time %><br />
+    <%= f.datetime_select :end_time %>
+  </div>
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :note %><br />
+    <%= f.text_area :note, :size => '40x5' %>
+  </div>
+  <div class="field">
+    <%= f.label :flyer %><br />
+    <%= f.file_field :flyer %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

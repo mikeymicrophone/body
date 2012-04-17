@@ -8,9 +8,9 @@
     <%= event.subtitle %>
     <% if someone_is_logged_in %>
       <% if current_viber.rsvp_for_event(event) %>
-        <%= current_viber.rsvp_for_event(event).sincerity %>
+        <br>Your RSVP: level <%= current_viber.rsvp_for_event(event).sincerity %><br>
       <% else %>
-        <%= link_to 'RSVP', '#' + dom_id(event, :rsvp), :class => 'fancybox', :id => dom_id(event, :rsvp_to) %>
+        <br><%= link_to 'RSVP', '#' + dom_id(event, :rsvp), :class => 'fancybox', :id => dom_id(event, :rsvp_to) %>
         <div class='hidden'>
           <%= content_tag :div, :id => dom_id(event, :rsvp) do %>
             <%= form_for event.rsvps.new, :remote => true, :html => {:id => dom_id(event, :rsvp_form_for)} do |f| %>
@@ -23,8 +23,8 @@
         </div>
       <% end %>
     <% end %>
-    <%= event.has_tickets_available? ? link_to('tickets available!', new_event_ticket_path(event)) : 'sold out!' %>
-    <%= "(You have #{current_viber.tickets.for_event(event).count}.)" if current_viber.has_tickets_to_event?(event) %>
+    <%= event.has_tickets_available? ? link_to('tickets available!', new_event_ticket_path(event)) : (event.sold_out? ? 'sold out!' : 'tickets not yet available.') %>
+    <%= "(You have #{current_viber.tickets.for_event(event).count}.)" if current_viber.andand.has_tickets_to_event?(event) %>
     <div class="schedule">
       <%= event.start_time.strftime("%a, *%m/*%d *%I:%M").gsub('*0', '').gsub('*', '') %> - <%= event.end_time.strftime("*%I:%M").gsub('*0', '').gsub('*', '') %>
     </div>

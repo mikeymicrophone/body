@@ -1,4 +1,8 @@
 Body::Application.routes.draw do
+  resources :ysvps
+
+  resources :yogas
+
   resources :transactions
 
   resources :tickets

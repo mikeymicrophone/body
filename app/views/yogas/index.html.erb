@@ -1,0 +1,19 @@
+<h1>le list of yogas</h1>
+
+<table>
+  <% @yogas.each do |yoga| %>
+    <tr>
+      <td><%= yoga.time %></td>
+      <td><%= yoga.instructor.name %></td>
+      <td><%= yoga.title %><hr><%= yoga.note %></td>
+      <td><%= image_tag yoga.flyer, :width => 300 %></td>
+      <td><%= link_to 'p', yoga, :title => 'permalink' %></td>
+      <td><%= link_to 'e', edit_yoga_path(yoga), :title => 'edit' %></td>
+      <td><%= link_to 'x', yoga, confirm: 'Are you sure?', method: :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Yoga', new_yoga_path %>

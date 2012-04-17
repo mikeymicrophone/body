@@ -1,0 +1,2 @@
+module YsvpsHelper
+end

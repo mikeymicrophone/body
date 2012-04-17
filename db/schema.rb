@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120402165005) do
+ActiveRecord::Schema.define(:version => 20120416222116) do
 
   create_table "events", :force => true do |t|
     t.string   "name"
@@ -87,11 +87,34 @@ ActiveRecord::Schema.define(:version => 20120402165005) do
     t.string   "authentication_token"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
+    t.string   "phone_number"
   end
 
   add_index "vibers", ["authentication_token"], :name => "index_vibers_on_authentication_token", :unique => true
   add_index "vibers", ["confirmation_token"], :name => "index_vibers_on_confirmation_token", :unique => true
   add_index "vibers", ["email"], :name => "index_vibers_on_email", :unique => true
   add_index "vibers", ["reset_password_token"], :name => "index_vibers_on_reset_password_token", :unique => true
+
+  create_table "yogas", :force => true do |t|
+    t.datetime "time"
+    t.integer  "instructor_id"
+    t.integer  "creator_id"
+    t.datetime "end_time"
+    t.string   "title"
+    t.text     "note"
+    t.string   "flyer"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  create_table "ysvps", :force => true do |t|
+    t.integer  "yoga_id"
+    t.integer  "viber_id"
+    t.integer  "sincerity"
+    t.text     "note"
+    t.integer  "reminder_lead_time"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
 
 end

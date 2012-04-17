@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Yoga:</b>
+  <%= @ysvp.yoga_id %>
+</p>
+
+<p>
+  <b>Viber:</b>
+  <%= @ysvp.viber_id %>
+</p>
+
+<p>
+  <b>Sincerity:</b>
+  <%= @ysvp.sincerity %>
+</p>
+
+<p>
+  <b>Note:</b>
+  <%= @ysvp.note %>
+</p>
+
+<p>
+  <b>Reminder Lead Time</b>
+  <%= @ysvp.reminder_lead_time %>
+</p>
+
+
+<%= link_to 'Edit', edit_ysvp_path(@ysvp) %> |
+<%= link_to 'Back', ysvps_path %>

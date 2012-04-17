@@ -20,4 +20,8 @@ class Event < ActiveRecord::Base
   def has_tickets_available?
     available_ticket_count > 0
   end
+  
+  def sold_out?
+    tiers.present? && !has_tickets_available?
+  end
 end

@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <h2><%= @yoga.title %></h2>
+  <%= @yoga.time.strftime("%B %m/%d, %I:%M %p") %>-<%= @yoga.end_time.strftime("%I:%M %p") %>
+</p>
+
+<p>
+  <b>Instructor:</b>
+  <%= @yoga.instructor.name %>
+</p>
+
+<%= link_to "RSVP", '#rsvp', :class => 'fancybox' %>
+<div class="hidden">
+  <div id="rsvp">
+    <%= form_for @yoga.ysvps.new, :remote => true do |f| %>
+      <%= f.label :sincerity, "How committed are you to this practice?" %>
+      <%= f.text_field :sincerity, :size => 4, :placeholder => '1-500' %><br>
+      <%= f.label :reminder_lead_time, "How many minutes before yoga should we send your reminder?" %>
+      <%= f.text_field :reminder_lead_time, :size => 4, :placeholder => '35' %><br>
+      <%= f.submit :OK %>
+    <% end %>
+  </div>
+</div>
+
+<p>
+  <%= @yoga.note %>
+</p>
+
+<p>
+  <%= image_tag @yoga.flyer, :width => 500 %>
+</p>
+
+
+<%= link_to 'Edit', edit_yoga_path(@yoga) %> |
+<%= link_to 'Back', yogas_path %>
